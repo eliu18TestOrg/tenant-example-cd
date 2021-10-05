@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solution001
+  namespace: tenant-example
+spec:
+  template:
+    spec:
+      serviceAccountName: tenant-example
+      containers:
+      - name: solution001
+        image: 558232680640.dkr.ecr.us-east-1.amazonaws.com/example-repo:main-1628601149
+---
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: solution001-https
+  namespace: tenant-example
+spec:
+  virtualHost:
+    domains:
+    - 'solution001-dev.ea.sdlc.k8s.cbrands.com'

@@ -1,0 +1,3 @@
+apiVersion: v2
+name: tenant-example-cd
+version: 1.0.0
