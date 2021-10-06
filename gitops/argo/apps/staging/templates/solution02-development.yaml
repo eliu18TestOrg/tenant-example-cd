@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: solution02-development-staging
+  namespace: argocd
+  labels:
+    app: solution02
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: tenant-example
+  source:
+    repoURL: https://github.com/ConstellationBrands/tenant-example-cd.git
+    targetRevision: HEAD
+    path: gitops/env/staging/solution02-development
+
+  destination:
+    namespace: tenant-example
+    name: eks-staging-service-mesh
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    validate: true

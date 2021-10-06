@@ -1,0 +1,21 @@
+---
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: solution02-https
+  namespace: tenant-example
+  labels:
+    app: solution02
+    gateway: https
+spec:
+  virtualHost:
+    domains:
+    - 'solution02.sm.ea.sdlc.k8s.cbrands.com'
+    routes:
+    - matchers:
+      - prefix: /
+      routeAction:
+        single:
+          upstream:
+            name: tenant-example-solution02-service-9091
+            namespace: gloo-system
