@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: tenant-example
+  name: solution0003
+data:
+  api_port: "9091"
+  api_context: "/testcontext"
+  api_name: "solution0003"

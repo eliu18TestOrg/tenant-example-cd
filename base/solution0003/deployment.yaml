@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solution0003
+  namespace: tenant-example
+  labels:
+    app: solution0003
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solution0003
+  template:
+    metadata:
+      labels:
+        app: solution0003
+    spec:
+      containers:
+      - name: solution0003
+        image: 558232680640.dkr.ecr.us-east-1.amazonaws.com/example-repo:main-0
+        env:
+        - name: API_CONTEXT 
+          valueFrom:
+            configMapKeyRef:
+              name: solution0003
+              key: api_context
+        - name: API_NAME 
+          valueFrom:
+            configMapKeyRef:
+              name: solution0003
+              key: api_name
+        - name: API_PORT 
+          valueFrom:
+            configMapKeyRef:
+              name: solution0003
+              key: api_port              
