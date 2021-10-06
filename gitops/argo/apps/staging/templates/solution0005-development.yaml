@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: solution0005-development-staging
+  namespace: argocd
+  labels:
+    app: solution0005
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: tenant-example
+  source:
+    repoURL: https://github.com/ConstellationBrands/tenant-example-cd.git
+    targetRevision: HEAD
+    path: gitops/env/staging/solution0005-development
+
+  destination:
+    namespace: tenant-example
+    name: in-cluster
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    validate: true
